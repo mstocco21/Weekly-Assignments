@@ -1,0 +1,31 @@
+# Weekly assignment 2
+### This is the weekly assignment #2 (code is lead by one #, explanation/annotation of code is lead by 2 ##'s, comments/notes are lead by 3 ###'s)
+
+ Part 1
+
+# efetch -db=nucleotide -id=NC_008535.1 -format=gb>CA.gbk
+##   Uses e-utilities to download the genbank file for the chloroplast (Accession number = NC_008535.1)
+
+# python genbank_to_fasta.py CA.gbk CA.fasta
+##   Uses the premade python script genbank_to_fasta.py to create a .fasta file of the protein sequences.
+
+# Download to canvas
+
+ Part 2
+
+# efetch -db=sequences -id=NC_008535.1 -format=fasta_cds_aa>CA_aa.fasta
+# less CA_aa.fasta
+##   Pulls up the file to scroll through and determine the number of protein sequences in the chloroplast. [ANSWER = 12]
+
+# efetch -db=sequences -id=NC_008535.1 -format=gb>CAgbf.gbk
+##   Creates a file of all the protein sequences in in the plant's chloroplast sequences.
+
+# less CAgbf.gbk
+##   Pulls up the genbankfile to scroll through and search for photosystem subunits
+##   How many photosystem subunits are present in the chromosome? [ANSWER =3]
+
+# efetch -db=sequences -id=YP_817467.1 -format=fasta_cds_aa>ATP_synthase_CF1_aa.fasta
+##   Creates a .fasta file with the sequences for the ATP synthase CF1 protein. 
+##   [Accession number: YP_817467.1]
+
+### All codes and information were double-checked via the NCBI database for certainty
