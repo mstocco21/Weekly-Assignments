@@ -1,0 +1,28 @@
+##This repository will act as the file for the weekly assignment #4
+# = code, ## = comment, ### answers to assignment questions
+
+#gdown.pl https://drive.google.com/file/d/1uoXQZeaismPEFe_rJjrkRdntDI0vBUNL/edit C.hydrogenoformans_Z2901.fasta
+## Downloads a reference sequences for the C. hydrogenoformans
+
+#gdown.pl https://drive.google.com/file/d/1PWWO5wVRRThLBXXEZjyWZHIb9udVcnCS/edit C.hydro_WA4_R1.fastq
+#gdown.pl https://drive.google.com/file/d/1mZFvpSIctuBihkOlQX9vhrkxng3cRmvK/edit C.hydro_WA4_R2.fastq
+## Downloads the raw sequencing reads for C. ferrireducens from the google drive
+
+#fastqc C.hydro_WA4_R1.fastq
+#fastqc C.hydro_WA4_R2.fastq
+      fastqc T1_R2.fastq.gz
+## Uses Fastqc to asses the quality of the runs and whether or not they were good sequencing runs
+### Neither of the sequences turn out any poor quality reads with each sequence averaging about 37 on the quality read
+### There was little trimming to be done, but there were a few sequences that needed to be tossed out the next line in this file outlines that process
+
+#cutadapt -q 20,20 -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC -A CTGTCTCTTATACACATCTGACGCTGCCGACGA -m 50 --max-n 0 -o C.hydro_WA4_R1.cutadapt.fastq -p C.hydro_WA4_R2.cutadapt.fastq C.hydro_WA4_R1.fastq C.hydro_WA4_R2.fastq
+## Performs quality trimming with cutadapt tool
+### From report after using the cutadapt tool, it seems only 2 reads required the use of an adaptor
+
+#bowtie2 build C.hydrogenoformans_Z2901.fasta C.hydro
+## Uses Bowtie2 to index the genome
+
+#bowtie2 -x C.hydro -1 C.hydro_WA4_R1.fastq -2 C.hydro_WA4_R2.fastq -S 6008.sam
+## Uses bowtie2 to map reads to the indexed reference genome
+### Using the above command, the report read 74.52% overall alignment rate
+### From a 74.52% alignment rate, 25.48% of reads did NOT map to the reference genome
