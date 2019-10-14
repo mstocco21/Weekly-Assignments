@@ -1,0 +1,29 @@
+##This repository will act as the file for the weekly assignment #5
+# = code, ## = comment, ### answers to assignment questions
+
+## The G11 R1 and R2 cutadapt files were already created in the scratch directory, I used these in this lab. This repository starts 
+## from copying and pasting those files into a special directory to be used for the de novo assembly
+
+# cp G11_R1_cutadapt.fastq de_novo_assemblyRP/
+# cp G11_R1_cutadapt.fastq de_novo_assemblyRP/
+## This command moves the cutadapt files from the previous folder into the new de_novo_assemblyRP directly to make room for the next
+## stage of the assignment.
+
+# conda activate de_novo
+## activates the Spade assembly tool, this will be the assembler uses as it provides de Bruijn graph processing and contig refinement at the 
+## end of the process for better reads
+
+# spades.py -k 21,51,71,91,111,127 --careful --pe1-1 G11_R1.cutadapt.fastq --pe1-2 G11_R2.cutadapt.fastq -o G11_spades_output
+## Uses spade.py to create a new assembly from the cutadapt files from scratch and puts them into a fdirectory marked "G11_spades_output"
+##
+
+# cd G11_spades_output
+# quast contigs.fasta -o Quast_contigs
+## changes directory to the output and uses the quast genome assesment tool to store a quality report in the directory Quast_contigs
+## winSCP was used to bring up the .html document so we could assess the quality ourselves.
+
+## Some answers below
+### Number of contigs: 119
+### GC content: 57.89
+### Largest contig: 302203
+### N50: 110872
