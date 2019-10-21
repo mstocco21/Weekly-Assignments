@@ -1,0 +1,40 @@
+##This repository will act as the file for the weekly assignment #5
+# = code, ## = comment, ### answers to assignment questions
+
+# wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/Unk_therm.faa
+## Downloads the list of proteins for the unknown thermophile.
+
+# makeblastdb -in Unk_therm.faa -dbtype prot -title Unk_therm
+## Make a blastable database of protein sequences from the unknown protein sequences
+
+# wget https://github.com/stechtmann/BL4300-5300/raw/master/data/Weekly_Assignment_data/HSP_prot.fasta
+## Allows us to query the blastable database with a hsp.fasta
+
+# blastp -db Unk_therm.faa -query HSP_prot.fasta -out HSP_prot.txt -outfmt 7
+## Performs a blastp against the unknown protein db using the HSP_prot.fasta as my query
+
+##How many HSPs were found in the unknown organism?
+### Block 1: Unk's 1985,1863,1860,1117,404,1353
+### Block 2: Unk's 30,543,822
+### Block 3: Unk 31
+### Block 4: Unk's 1842,301,1187,654
+### Block 5: Unk 85
+### Block 6: Unk's 1970,571,1819,485,1707
+
+##Provide your justification for how many HSPs were in the organism (use information in the BLAST ouput E-value, length, percent ID, etc).
+### For the HSP's, I used ONLY the e-value. This was used as it is a fantastic measure of how well the sequences that turned up, matched 
+### against the reference protein. Although there were many values that could be used, my specifications listed only those under the value
+### of 1. And for that, I found the following matches:
+
+##How many HSP's have paralogs?
+### Block 1: Unk's 1985,1863,1860
+### Block 2: Unk's 30,543
+### Block 3: Unk 31 	
+### Block 4: Unk's 1842,301,1187
+### Block 5: Unk 85
+### Block 6: Unk's 1970,1819,485
+
+##Provide a justification for the presence of paralogs.
+### My justification for the number of paralogs was to take those HSP's and put them through one more comparative test. Using the chart
+### from the slides, I determined HSP's had a %-identity-to-alignment-length ratio listed in the safe zone and marked those as unknowns
+### that might be listed as a paralog.
