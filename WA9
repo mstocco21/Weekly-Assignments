@@ -1,0 +1,44 @@
+##This repository will act as the file for the weekly assignment #9
+# = code, ## = comment, ### answers to assignment questions
+## This coding is an extension of the WA8 assignment, the coding seen here, will pick up from where that assignment left off 
+
+# plotCounts(dds, gene="Solyc11g028040.1.1", intgroup="dex")
+# plotCounts(dds, gene="Solyc11g028040.1.1", intgroup="dex", returnData=TRUE)
+## Allows us to plot the expression of a particular gene using plotcounts
+## The raw data can be returned by adding returnData=TRUE
+
+# plotCounts(dds, gene="Solyc11g028040.1.1", intgroup="dex", returnData=TRUE) %>%
+   ggplot(aes(dex,count))+
+   geom_boxplot(aes(fill=dex))+
+   scale_y_log10() + 
+   ggtitle("Solyc11g028040.1.1 (Highest negative)")
+## Creates a box plot of the highest negative gene
+
+# plotCounts(dds, gene="Solyc09g089500.2.1", intgroup="dex")
+# plotCounts(dds, gene="Solyc09g089500.2.1", intgroup="dex", returnData=TRUE)
+## Repeat of the earlier code for the highest positive gene
+
+# plotCounts(dds, gene="Solyc09g089500.2.1", intgroup="dex", returnData=TRUE) %>%
+   ggplot(aes(dex,count))+
+   geom_boxplot(aes(fill=dex))+
+   scale_y_log10() + 
+   ggtitle("Solyc09g089500.2.1 (Highest positive)")
+## Creates a box plot of the highest positive gene
+
+# res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant"))
+# ggplot(res)+
+   geom_point(aes(x=log2FoldChange, y=padj))
+## Uses dplyr to add a column indicating significance.
+## Makes  a basic XY scatter plot with Log2FoldChange as the x-axis and adjusted p-value as the y-axis using ggplot
+
+# ggplot(res) +
+   geom_point(aes(x=-log10(padj), y=log2FoldChange, colour=significance)) +
+   ggtitle("MA plot of overexpression") +
+   xlab("log2 fold change") + 
+   ylab("-log10 adjusted p-value") +
+   #scale_y_continuous(limits = c(0,50)) +
+   theme(legend.position = "none",
+        plot.title = element_text(size = rel(1.5), hjust = 0.5),
+        axis.title = element_text(size = rel(1.25)))  +
+   theme_bw()
+## Volcano plot of the data described
